@@ -1,0 +1,14 @@
+# Spring
+spring:
+  application:
+    # 应用名称
+    name: redisson-demo
+  profiles:
+    # 环境配置
+    active: test
+  main:
+    allow-bean-definition-overriding: true
+
+server:
+  port: 10001
+#  port: ${random.int[10000,19999]}
