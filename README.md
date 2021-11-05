@@ -37,8 +37,10 @@ redis 延迟队列和分布式锁
 
 > 记得修改password和nodeAddresses中的值
 >
-> 参考：https://github.com/redisson/redisson/tree/master/redisson-spring-boot-starter
+> 参考：https://github.com/redisson/redisson/tree/master/redisson-spring-boot-starter    
+> yaml配置参考文档 https://github.com/redisson/redisson/wiki/2.-Configuration#262-single-instance-yaml-config-format
 
+clusterServersConfig
 ```yaml
 spring:
   redis:
@@ -92,6 +94,47 @@ redis:
     expire:
       minutes: 60
 ```
+
+singleServerConfig
+
+```yaml
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 12
+    timeout: 3000
+    lettuce:
+      pool:
+        max-idle: 10
+        min-idle: 0
+        max-active: 10
+        max-wait: -1
+    redisson:
+      config: |
+        singleServerConfig:
+          idleConnectionTimeout: 10000
+          connectTimeout: 10000
+          timeout: 3000
+          retryAttempts: 3
+          retryInterval: 1500
+          password: null
+          subscriptionsPerConnection: 5
+          clientName: null
+          address: "redis://127.0.0.1:6379"
+          subscriptionConnectionMinimumIdleSize: 1
+          subscriptionConnectionPoolSize: 50
+          connectionMinimumIdleSize: 24
+          connectionPoolSize: 64
+          database: 0
+          dnsMonitoringInterval: 5000
+        threads: 16
+        nettyThreads: 32
+        codec: !<org.redisson.codec.MarshallingCodec> {}
+        transportMode: "NIO"
+```
+
+
 
 ### 3.分布式锁
 
