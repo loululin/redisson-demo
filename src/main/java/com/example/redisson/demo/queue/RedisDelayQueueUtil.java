@@ -42,7 +42,7 @@ public class RedisDelayQueueUtil {
         try {
             RBlockingDeque<Object> blockingDeque = redissonClient.getBlockingDeque(queueCode);
             RDelayedQueue<Object> delayedQueue = redissonClient.getDelayedQueue(blockingDeque);
-            delayedQueue.offer(value, delay, timeUnit);
+            delayedQueue.offerAsync(value, delay, timeUnit);
             //delayedQueue.destroy();
             log.info("(添加延时队列成功) 队列键：{}，队列值：{}，延迟时间：{}", queueCode, value, timeUnit.toSeconds(delay) + "秒");
         } catch (Exception e) {

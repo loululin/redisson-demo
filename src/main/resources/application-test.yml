@@ -3,7 +3,7 @@ spring:
     database: 1
     cluster:
       nodes:
-        - 10.113.75.151:26379
+        - 173.27.191.118:6379
     password: 123456
     timeout: 10000
     lettuce:
@@ -36,7 +36,7 @@ spring:
           readMode: "SLAVE"
           subscriptionMode: "SLAVE"
           nodeAddresses:
-          - "redis://10.113.75.151:26379"
+          - "redis://173.27.191.118:6379"
           scanInterval: 2000
           pingConnectionInterval: 1000
           keepAlive: false
