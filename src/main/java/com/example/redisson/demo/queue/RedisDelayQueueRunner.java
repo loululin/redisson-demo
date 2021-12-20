@@ -52,6 +52,27 @@ public class RedisDelayQueueRunner implements CommandLineRunner {
                 }
             }
         });
+
+/*        new Thread(() -> {
+            while (true) {
+                try {
+                    RedisDelayQueueEnum[] queueEnums
+                            = RedisDelayQueueEnum.values();
+                    for (RedisDelayQueueEnum queueEnum :
+                            queueEnums) {
+                        Object value =
+                                redisDelayQueueUtil.getDelayQueue(queueEnum.getCode());
+                        if (value != null) {
+                            RedisDelayQueueHandler redisDelayQueueHandle =
+                                    SpringUtils.getBean(queueEnum.getBeanId());
+                            redisDelayQueueHandle.execute(value);
+                        }
+                    }
+                } catch (InterruptedException e) {
+                    log.error("(Redis Delay queue interrupt ) {}", e.getMessage());
+                }
+            }
+        }).start();*/
         log.info("(Redission延迟队列监测启动成功)");
     }
 }

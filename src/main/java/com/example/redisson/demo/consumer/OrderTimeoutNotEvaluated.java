@@ -14,7 +14,7 @@ import java.util.Map;
  **/
 @Component
 @Slf4j
-public class OrderTimeoutNotEvaluated implements RedisDelayQueueHandler<Map> {
+public class OrderTimeoutNotEvaluated implements RedisDelayQueueHandler<Long> {
     /**
      * @Description: execute
      * @Param: [t]
@@ -24,7 +24,7 @@ public class OrderTimeoutNotEvaluated implements RedisDelayQueueHandler<Map> {
      */
     @Override
     @Async
-    public void execute(Map map) {
+    public void execute(Long map) {
         log.info("(收到订单超时未评价延迟消息) {}", map);
     }
 }

@@ -14,7 +14,7 @@ import java.util.Map;
  **/
 @Component
 @Slf4j
-public class OrderPaymentTimeout implements RedisDelayQueueHandler<Map> {
+public class OrderPaymentTimeout implements RedisDelayQueueHandler<Long> {
     /**
      * @Description: execute
      * @Param: [t]
@@ -24,13 +24,7 @@ public class OrderPaymentTimeout implements RedisDelayQueueHandler<Map> {
      */
     @Override
     @Async
-    public void execute(Map map) {
+    public void execute(Long map) {
         log.info("(收到订单支付超时延迟消息) {}", map);
-        try {
-            Thread.sleep(12000);
-        } catch (InterruptedException e) {
-            log.error("error",e);
-        }
-
     }
 }

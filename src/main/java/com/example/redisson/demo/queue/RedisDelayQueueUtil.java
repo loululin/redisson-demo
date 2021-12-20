@@ -36,9 +36,6 @@ public class RedisDelayQueueUtil {
      * @param <T>
      */
     public <T> boolean addDelayQueue(@NonNull T value, @NonNull long delay, @NonNull TimeUnit timeUnit, @NonNull String queueCode) {
-        if (StringUtils.isBlank(queueCode) || Objects.isNull(value)) {
-            return false;
-        }
         try {
             RBlockingDeque<Object> blockingDeque = redissonClient.getBlockingDeque(queueCode);
             RDelayedQueue<Object> delayedQueue = redissonClient.getDelayedQueue(blockingDeque);
@@ -58,10 +55,8 @@ public class RedisDelayQueueUtil {
      * @param <T>
      */
     public <T> T getDelayQueue(@NonNull String queueCode) throws InterruptedException {
-        if (StringUtils.isBlank(queueCode)) {
-            return null;
-        }
-        RBlockingDeque<Map> blockingDeque = redissonClient.getBlockingDeque(queueCode);
+        RBlockingDeque<Long> blockingDeque = redissonClient.getBlockingDeque(queueCode);
+        RDelayedQueue<Long> delayedQueue = redissonClient.getDelayedQueue(blockingDeque);
         T value = (T) blockingDeque.poll();
         return value;
     }
