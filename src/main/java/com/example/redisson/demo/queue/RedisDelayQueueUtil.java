@@ -56,7 +56,7 @@ public class RedisDelayQueueUtil {
      */
     public <T> T getDelayQueue(@NonNull String queueCode) throws InterruptedException {
         RBlockingDeque<Long> blockingDeque = redissonClient.getBlockingDeque(queueCode);
-        RDelayedQueue<Long> delayedQueue = redissonClient.getDelayedQueue(blockingDeque);
+        redissonClient.getDelayedQueue(blockingDeque);
         T value = (T) blockingDeque.poll();
         return value;
     }

@@ -18,11 +18,11 @@ public enum RedisDelayQueueEnum {
     /**
      * ORDER_PAYMENT_TIMEOUT
      */
-    ORDER_PAYMENT_TIMEOUT("ORDER_PAYMENT_TIMEOUT","订单支付超时，自动取消订单", "orderPaymentTimeout"),
+    ORDER_PAYMENT_TIMEOUT("ORDER_PAYMENT_TIMEOUT_LOU","订单支付超时，自动取消订单", "orderPaymentTimeout"),
     /**
      * ORDER_TIMEOUT_NOT_EVALUATED
      */
-    ORDER_TIMEOUT_NOT_EVALUATED("ORDER_TIMEOUT_NOT_EVALUATED", "订单超时未评价，系统默认好评", "orderTimeoutNotEvaluated");
+    ORDER_TIMEOUT_NOT_EVALUATED("ORDER_TIMEOUT_NOT_EVALUATED_LOU", "订单超时未评价，系统默认好评", "orderTimeoutNotEvaluated");
 
     /**
      * 延迟队列 Redis Key
