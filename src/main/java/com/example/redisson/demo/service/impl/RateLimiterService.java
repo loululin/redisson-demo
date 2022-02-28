@@ -30,8 +30,8 @@ public class RateLimiterService {
             RRateLimiter rateLimiter =
                     redisson.getRateLimiter("rateLimiter:" + phone);
             //每10秒产生1个令牌
-            rateLimiter.trySetRate(RateType.OVERALL, 1, 10,
-                    RateIntervalUnit.SECONDS);
+            rateLimiter.trySetRate(RateType.OVERALL, 3, 10,
+                    RateIntervalUnit.MINUTES);
 
             if (rateLimiter.tryAcquire(1)) {
                 log.info("向手机:{}发送短信", phone);
