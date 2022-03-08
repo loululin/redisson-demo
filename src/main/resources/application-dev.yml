@@ -32,3 +32,20 @@ spring:
         nettyThreads: 32
         codec: !<org.redisson.codec.MarshallingCodec> {}
         transportMode: "NIO"
+  rabbitmq:
+    host: localhost
+    port: 5672
+#    virtual-host: /test-1
+    username: guest
+    password: guest
+
+mq:
+  queueBinding:
+    queue: prod_queue_pay
+    dlQueue: dl-queue
+    exchange:
+      name: exchang_prod_pay
+      dlTopicExchange: dl-topic-exchange
+      type: topic
+    key: prod_pay
+    dlRoutingKey: dl-routing-key
